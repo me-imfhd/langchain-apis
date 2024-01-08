@@ -1,0 +1,15 @@
+get all todos:
+curl -X GET http://localhost:8000/api/
+
+create a todo:
+curl -X POST http://localhost:8000/api/ \
+    -H "Content-Type: application/json" \
+    -d '{"task":"Todo 1", "done":false}'
+
+update a todo by id:
+curl -X PUT http://localhost:8000/api/1 \
+    -H "Content-Type: application/json" \
+    -d '{"task":"Todo one", "done":true}'
+
+delete the todo by id
+curl -X DELETE http://localhost:8000/api/1

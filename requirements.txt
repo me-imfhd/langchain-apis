@@ -6,3 +6,8 @@ chromadb
 bs4
 cohere
 tiktoken
+fastapi
+uvicorn
+tortoise-orm
+python-dotenv
+asyncpg
