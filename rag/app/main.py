@@ -1,12 +1,3 @@
-from dotenv import load_dotenv
-# Load the .env file
-load_dotenv()
-
-# Now you can access the variables
-import os
-db_uri = os.getenv('DATABASE_URI')
-api_key = os.getenv('API_KEY')
-
 from fastapi import FastAPI
 from api.routes.todo import todo_router
 from tortoise.contrib.fastapi import register_tortoise
@@ -37,9 +28,8 @@ register_tortoise(
     },
     add_exception_handlers=True,
     generate_schemas=True,
-    # modules={"models":["api.models.todo"]}
 )
 
 @app.get("/")
 def index():
-    return {"status":"todo api is running"}
+    return {"status":"todo api is running, go to /docs to see swagger"}
