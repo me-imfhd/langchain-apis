@@ -1,6 +1,7 @@
 from fastapi import APIRouter,HTTPException,status
 from api.models.todo import Todo
-from api.schemas.todo import GetTodo,PostTodo,PutTodo
+from api.schemas.todo import GetTodo,PostTodo,PutTodo,GetResponse
+from rag.lib.generate_response import generate_response
 
 todo_router =  APIRouter(prefix="/api",tags=["Todo"])
 
@@ -34,4 +35,12 @@ async def delete_todo(key: int):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Todo not found")
     await Todo.filter(id=key).delete()
     return "Todo deleted successfully."
-    
+
+@todo_router.get("/")
+async def get_response(body: GetResponse):
+    # PostTodo validates input
+    data = body.model_dump(exclude_unset=True)
+    generate_response(data)
+
+    return 
+    # and GetTodo to return the todo created

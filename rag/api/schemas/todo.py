@@ -13,3 +13,8 @@ class PostTodo(BaseModel):
 class PutTodo(BaseModel):
     task:Optional[str] = Field(...,max_length=100)
     done:Optional[bool]
+
+class GetResponse(BaseModel):
+    context:str
+    human_input:str = Field (..., max_length=10000)
+    ability:str = Field (..., max_length=50)
